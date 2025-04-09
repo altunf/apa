@@ -9,14 +9,13 @@ import { ThemeButton } from "./theme-button";
 export const Navbar = () => {
   return (
     <main className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
-      <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-semibold md:text-base"
-        >
-          <School className="h-6 w-6" />
-          <span className="sr-only">Akademik Psikoloji Atlası</span>
-        </Link>
+      <Link
+        href="/"
+        className="flex items-center text-lg font-semibold md:text-base"
+      >
+        <span className="text-md">Akademik Psikoloji Atlası</span>
+      </Link>
+      <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 ">
         <Link
           href="/"
           className="text-foreground transition-colors hover:text-foreground flex items-center justify-center"
@@ -41,23 +40,21 @@ export const Navbar = () => {
         >
           Değişkenler ve Tanımları
         </Link>
-         <Link
+        <Link
           href="/about"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Hakkında
-        </Link> 
+        </Link>
         <Link
           href="/charts"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Görselleştirme
-        </Link> 
+        </Link>
       </nav>
       <MobileNavbar />
-      <div>
-        <ThemeButton />
-      </div>
+      <ThemeButton />
     </main>
   );
 };
