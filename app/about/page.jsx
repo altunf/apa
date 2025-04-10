@@ -11,7 +11,7 @@ export default function About() {
       </p>
       <p className="mb-4">
         Veri setinin amacı, lisans ve lisans üstü eğitimde psikoloji disiplinini
-        tercih edecek öğrencilere yol gösterebilmektedir. Veri tabanında her bir
+        tercih edecek öğrencilere yol gösterebilmektir. Veri tabanında her bir
         üniversitede kaç öğretim üyesi olduğu, bu kişilerin ne kadar yüksek lisans
         ve doktora öğrencisi yetiştirdiği, yayın yaptığı ve atıf aldığı gibi
         bilgiler yer almaktadır. Bu bilgilerin öğrencilerin tercihlerinde işe
@@ -19,7 +19,7 @@ export default function About() {
       </p>
       <p className="mb-4">
         Veri seti ağırlıklı olarak <strong>2024 Eylül - 2025 Şubat</strong>
-        aralığındaki taramalara göre oluşturulmuştur.
+         aralığındaki taramalara göre oluşturulmuştur.
       </p>
       <p className="mb-4">
         Araştırmacıların ünvanları, ad ve soyadları, bağlı bulundukları üniversite,
