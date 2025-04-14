@@ -107,7 +107,7 @@ export function UniqueDepartments() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {total.toLocaleString()}
+                          {top.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
