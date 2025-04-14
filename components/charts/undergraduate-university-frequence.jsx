@@ -40,7 +40,7 @@ export function UndergraduateUniversityFrequence() {
   const total = React.useMemo(() => {
     return rawData.reduce((acc, curr) => acc + curr.count, 0);
   }, [rawData]);
-  
+
   const defaultChartConfig = {
     count: {
       label: "count",
@@ -114,7 +114,7 @@ export function UndergraduateUniversityFrequence() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Akademisyenlerin lisans mezunu olduğu üniversitelerin dağılımı
+          Akademisyenlerin lisans mezunu olduğu en yaygın 10 üniversite
         </div>
       </CardFooter>
     </Card>
