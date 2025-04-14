@@ -12,7 +12,7 @@ export const ProfileHeader = ({ academic }) => {
         <div className="text-start">
           <h1 className="text-3xl font-bold">{academic?.fullName}</h1>
           <p className="text-sm text-primary-foreground/80 mt-3 capitalize">
-            {academic?.subField}
+            {academic?.subfield}
           </p>
           <p className="text-sm text-primary-foreground/80 mt-3">
             {academic?.title}

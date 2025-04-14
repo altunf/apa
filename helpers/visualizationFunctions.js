@@ -50,3 +50,22 @@ export function getUndergraduateUniversityFrequence(data) {
   .sort((a, b) => b.count - a.count);
 }
 
+export function getSubfieldFrequence(data) {
+  const counts = {};
+
+  data.forEach((item) => {
+    const subfield = item?.subfield;
+    if ( subfield &&
+        subfield.toString().trim().toLocaleLowerCase('tr-TR') !== "veri yok" &&
+        subfield.toString().trim() !== "") {
+      const cleanSubfield = capitalizeWords(
+        subfield.toString().trim().toLocaleLowerCase("tr-TR")
+      );
+      counts[cleanSubfield] = (counts[cleanSubfield] || 0) + 1;
+    }
+  });
+
+  return Object.entries(counts)
+  .map(([subfield, count]) => ({ subfield, count }))
+  .sort((a, b) => b.count - a.count);
+}

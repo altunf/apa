@@ -43,7 +43,7 @@ export function mergeAndConvertData2(data2) {
         graduationYear: item["Doktora/Tıpta Mezuniyet Yılı"] || "veri yok",
       },
       postDoc: item["Post-Doktora"] || "veri yok",
-      subField: item["Bilim Alanı"] || "veri yok",
+      subfield: item["Bilim Alanı"] || "veri yok",
       keyWords: item["Anahtar Kelimeler"] || "veri yok",
       projects: {
         international: item["Uluslararası Proje"] || "veri yok",

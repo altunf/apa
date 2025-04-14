@@ -17,7 +17,6 @@ import { getUndergraduateUniversityFrequence } from "@/helpers/visualizationFunc
 export function UndergraduateUniversityFrequence() {
   const { academics } = useUniversityContext();
 
-
   const colors = [
     "hsl(var(--chart-1))",
     "hsl(var(--chart-2))",
@@ -31,7 +30,6 @@ export function UndergraduateUniversityFrequence() {
     "#E91E63", // Pembe
   ];
 
-  
   const rawData = getUndergraduateUniversityFrequence(academics);
   const topData = rawData.slice(0, 10).map((item, index) => ({
     ...item,
@@ -87,17 +85,20 @@ export function UndergraduateUniversityFrequence() {
     <Card>
       <CardHeader>
         <CardTitle>Üniversite - Sayı</CardTitle>
-        <CardDescription>{total} Akademisyen arasından {top} tanesini içerir</CardDescription>
+        <CardDescription>
+          {total} Akademisyen arasından {top} tanesini içerir
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={defaultChartConfig}>
           <BarChart
             accessibilityLayer
             data={topData}
-            layout="vertical"
+            layout="horizontal"
             margin={{ left: 0 }}
           >
-            <YAxis
+            <YAxis type="number" hide />
+            <XAxis
               hide
               dataKey="university"
               type="category"
@@ -106,7 +107,7 @@ export function UndergraduateUniversityFrequence() {
               axisLine={false}
               tickFormatter={(value) => defaultChartConfig[value]?.label}
             />
-            <XAxis type="number" hide />
+
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
             <Bar dataKey="count" layout="horizontal" radius={5}>
               {topData.map((entry, index) => (

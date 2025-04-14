@@ -14,6 +14,7 @@ export default function AcademicsPage() {
         <CardHeader>
           <CardTitle>Akademisyenler</CardTitle>
           <CardDescription>1217 akademisyen listeleniyor ...</CardDescription>
+{/*           <CardDescription>D.miş: Düzeltilmiş </CardDescription> */}
         </CardHeader>
         <CardContent>
           <AcademicsList />

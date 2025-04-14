@@ -58,7 +58,7 @@ export function mergeAndConvertData(data) {
         graduationYear: item["Doktora/Tıpta Mezuniyet Yılı"],
       },
       postDoc: item["Post-Doktora"] || "-",
-      subField: item["Alt Alan"].toLocaleLowerCase("tr"),
+      subfield: item["Alt Alan"].toLocaleLowerCase("tr"),
       keyWords: item["Anahtar Kelimeler"],
       projects: {
         international: item["Uluslararası Proje"],

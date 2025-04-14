@@ -1,3 +1,6 @@
+import { ArrowUpDown } from "lucide-react";
+import { Button } from "../ui/button";
+
 export const columnsShort = [
   {
     accessorKey: "fullName",
@@ -14,20 +17,65 @@ export const columnsShort = [
   },
 
   {
-    accessorKey: "subField",
+    accessorKey: "subfield",
     header: "Bilim Alanı",
   },
   {
     accessorKey: "keyWords",
     header: "Anahtar Kelimeler",
   },
-
+  {
+    accessorKey: "adjustedHIndex",
+    header: ({ column }) => {
+      return (
+        <Button
+        className="flex-row p-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Düzeltilmiş h-index
+          <ArrowUpDown size={14} className="ml-2"/>
+        </Button>
+      )
+    },
+    cell: ({ row }) => row.original.adjustedHIndex,
+  },
+/*   {
+    accessorKey: "graduateStudentCount.master",
+    header: ({ column }) => {
+      return (
+        <Button
+        className="flex-row p-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          YL Mezun Öğrenci Sayısı
+          <ArrowUpDown size={14} className="ml-2"/>
+        </Button>
+      )
+    },
+  }, */
+  {
+    accessorKey: "graduateStudentCount.phd",
+    header: ({ column }) => {
+      return (
+        <Button
+        className="flex-row p-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          DR Mezun Öğrenci Sayısı
+          <ArrowUpDown size={14} className="ml-2"/>
+        </Button>
+      )
+    },
+  },
   {
     accessorKey: "undergraduate.department",
     header: "Lisans Bölüm",
     cell: ({ row }) => row.original.undergraduate.department,
   },
-  {
+/*   {
     accessorKey: "undergraduate.university",
     header: "Lisans Üniversite",
     cell: ({ row }) => row.original.undergraduate.university,
@@ -42,7 +90,7 @@ export const columnsShort = [
     accessorKey: "master.university",
     header: "Yüksek Lisans Üniversite",
     cell: ({ row }) => row.original.master.university,
-  },
+  }, */
 
   {
     accessorKey: "phd.program",
@@ -54,6 +102,7 @@ export const columnsShort = [
     header: "Doktora Üniversite",
     cell: ({ row }) => row.original.phd.university,
   },
+
 ];
 
 export const columnsDetail = [
@@ -73,7 +122,7 @@ export const columnsDetail = [
   },
 
   {
-    accessorKey: "subField",
+    accessorKey: "subfield",
     header: "Alt Alan",
   },
   {

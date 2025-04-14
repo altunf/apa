@@ -51,7 +51,7 @@ export const RandomAcademics = () => {
                 </CardDescription>
               </div>
               <CardDescription className=" flex justify-end   font-medium">
-                {academic.academicStaff[0].subField}
+                {academic.academicStaff[0].subfield}
               </CardDescription>
             </div>
           );

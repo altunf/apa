@@ -79,10 +79,10 @@ export function DataTable({ data, columns, random, searchTerm, perPage = 10 }) {
           <>
             <Input
               placeholder={"Bilim alanı ara ..."}
-              value={table.getColumn("subField")?.getFilterValue() ?? ""}
+              value={table.getColumn("subfield")?.getFilterValue() ?? ""}
               onChange={(event) =>
                 table
-                  .getColumn("subField")
+                  .getColumn("subfield")
                   ?.setFilterValue(event.target.value.toLocaleLowerCase("tr"))
               }
               className="max-w-sm ml-4"

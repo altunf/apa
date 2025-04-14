@@ -169,7 +169,7 @@ export const UniversityProfile = ({ id }) => {
                       <CardTitle>
                         {staff?.title} {staff?.fullName}
                       </CardTitle>
-                      <CardDescription>{staff?.subField}</CardDescription>
+                      <CardDescription>{staff?.subfield}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
