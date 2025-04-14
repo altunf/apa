@@ -21,47 +21,47 @@ import { useUniversityContext } from "@/context/university-context";
 export function UniqueDepartments() {
   const { academics } = useUniversityContext();
 
-  const data = getUniqueDepartments(academics);
+  const colors = [
+    "hsl(var(--chart-1))",
+    "hsl(var(--chart-2))",
+    "hsl(var(--chart-3))",
+    "hsl(var(--chart-4))",
+    "#FF5733",
+    "#4B9CD3", // Açık mavi
+    "#A155B9", // Mor
+    "#F4B400", // Sarı
+    "#34A853", // Yeşil
+    "#E91E63", // Pembe
+  ];
 
+
+  const rawData = getUniqueDepartments(academics);
+  const topData = rawData.slice(0, 5).map((item, index) => ({
+    ...item,
+    color: colors[index % colors.length],
+  }));
   const total = React.useMemo(() => {
-    return data.reduce((acc, curr) => acc + curr.count, 0);
-  }, [data]);
+    return rawData.reduce((acc, curr) => acc + curr.count, 0);
+  }, [rawData]);
+  const top = React.useMemo(() => {
+    return topData.reduce((acc, curr) => acc + curr.count, 0);
+  }, [rawData]);
 
   // Define a default config object if none is provided
   const defaultChartConfig = {
     count: {
       label: "count",
     },
-    ...data.slice(0, 5).reduce((acc, curr, index) => {
-      const colors = [
-        "hsl(var(--chart-1))",
-        "hsl(var(--chart-2))",
-        "hsl(var(--chart-3))",
-        "hsl(var(--chart-4))",
-        "#FF5733",
-      ];
+    ...topData.reduce((acc, curr) => {
       return {
         ...acc,
         [curr.department]: {
           label: curr.department,
-          color: colors[index % colors.length],
+          color: curr.color,
         },
       };
     }, {}),
   };
-
-  const COLORS = data.slice(0, 5).map((_, index) => {
-    const colors = [
-      "hsl(var(--chart-1))",
-      "hsl(var(--chart-2))",
-      "hsl(var(--chart-3))",
-      "hsl(var(--chart-4))",
-      "#FF5733",
-    ];
-    return colors[index % colors.length];
-  });
-  
-
 
 
   
@@ -69,6 +69,7 @@ export function UniqueDepartments() {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Lisans Bölümü - Sayı</CardTitle>
+          <CardDescription>{total} Akademisyen arasından {top} tanesini içerir</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -81,15 +82,15 @@ export function UniqueDepartments() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={data.slice(0, 5)}
+              data={topData}
               dataKey="count"
               nameKey="department"
               innerRadius={60}
               outerRadius={80}
               strokeWidth={5}
             >
-              {data.slice(0, 5).map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+              {topData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
               <Label
                 content={({ viewBox }) => {

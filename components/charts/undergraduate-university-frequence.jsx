@@ -41,6 +41,10 @@ export function UndergraduateUniversityFrequence() {
     return rawData.reduce((acc, curr) => acc + curr.count, 0);
   }, [rawData]);
 
+  const top = React.useMemo(() => {
+    return topData.reduce((acc, curr) => acc + curr.count, 0);
+  }, [rawData]);
+
   const defaultChartConfig = {
     count: {
       label: "count",
@@ -83,7 +87,7 @@ export function UndergraduateUniversityFrequence() {
     <Card>
       <CardHeader>
         <CardTitle>Üniversite - Sayı</CardTitle>
-        <CardDescription>{total} Akademisyen</CardDescription>
+        <CardDescription>{total} Akademisyen arasından {top} tanesini içerir</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={defaultChartConfig}>
