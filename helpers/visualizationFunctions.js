@@ -1,3 +1,14 @@
+function capitalizeWords(str) {
+  return str
+    .split(" ")
+    .map(
+      (word) =>
+        word.charAt(0).toLocaleUpperCase("tr-TR") +
+        word.slice(1).toLocaleLowerCase("tr-TR")
+    )
+    .join(" ");
+}
+
 export function getUniqueDepartments(data) {
   const counts = {};
 
@@ -18,13 +29,24 @@ export function getUniqueDepartments(data) {
   .sort((a, b) => b.count - a.count);
 }
 
-function capitalizeWords(str) {
-  return str
-    .split(" ")
-    .map(
-      (word) =>
-        word.charAt(0).toLocaleUpperCase("tr-TR") +
-        word.slice(1).toLocaleLowerCase("tr-TR")
-    )
-    .join(" ");
+
+export function getUndergraduateUniversityFrequence(data) {
+  const counts = {};
+
+  data.forEach((item) => {
+    const university = item?.undergraduate?.university;
+    if ( university &&
+        university.toString().trim().toLocaleLowerCase('tr-TR') !== "veri yok" &&
+        university.toString().trim() !== "") {
+      const cleanUniversity = capitalizeWords(
+        university.toString().trim().toLocaleLowerCase("tr-TR")
+      );
+      counts[cleanUniversity] = (counts[cleanUniversity] || 0) + 1;
+    }
+  });
+
+  return Object.entries(counts)
+  .map(([university, count]) => ({ university, count }))
+  .sort((a, b) => b.count - a.count);
 }
+

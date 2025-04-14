@@ -13,7 +13,7 @@ export default function AcademicsPage() {
       <Card x-chunk="dashboard-06-chunk-0">
         <CardHeader>
           <CardTitle>Akademisyenler</CardTitle>
-          <CardDescription>1355 akademisyen listeleniyor ...</CardDescription>
+          <CardDescription>1217 akademisyen listeleniyor ...</CardDescription>
         </CardHeader>
         <CardContent>
           <AcademicsList />

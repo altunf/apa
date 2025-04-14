@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { TrendingUp } from "lucide-react";
 import { Label, Pie, PieChart, Cell } from "recharts";
 import { getUniqueDepartments } from "@/helpers/visualizationFunctions";
 import {
@@ -13,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -25,7 +23,7 @@ export function UniqueDepartments() {
 
   const data = getUniqueDepartments(academics);
 
-  const totalVisitors = React.useMemo(() => {
+  const total = React.useMemo(() => {
     return data.reduce((acc, curr) => acc + curr.count, 0);
   }, [data]);
 
@@ -62,7 +60,11 @@ export function UniqueDepartments() {
     ];
     return colors[index % colors.length];
   });
+  
 
+
+
+  
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
@@ -104,7 +106,7 @@ export function UniqueDepartments() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {total.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
@@ -123,11 +125,8 @@ export function UniqueDepartments() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-  {/*       <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div> */}
         <div className="leading-none text-muted-foreground">
-          Akademisyenlerin mezun olduğu en yaygın 5 lisans bölümünü gösterir.
+          Akademisyenlerin mezun olduğu en yaygın 5 lisans bölümü
         </div>
       </CardFooter>
     </Card>
