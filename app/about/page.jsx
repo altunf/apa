@@ -26,7 +26,7 @@ export default function About() {
         bilim alanları, anahtar kelimeleri, lisans ve lisansüstü mezuniyet
         bilgileri, projeleri ve Scopus verileri gibi birçok bilgiye yer verilmiştir.
         Bu bilgiler kamuya açık <strong>YÖKAKADEMİK</strong> ve
-        <strong>Scopus</strong> veri tabanlarından elde edilmiştir.
+        <strong> Scopus</strong> veri tabanlarından elde edilmiştir.
       </p>
       <p className="mb-4">
         <strong>Önemli Not:</strong> Amacım ilgili bölümlerin ne ölçüde
