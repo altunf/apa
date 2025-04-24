@@ -1,6 +1,15 @@
 "use client";
-import * as React from "react";
-import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts";
+
+import { TrendingUp } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  LabelList,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import {
   Card,
@@ -10,11 +19,38 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { useUniversityContext } from "@/context/university-context";
-import { getUndergraduateUniversityFrequence } from "@/helpers/visualizationFunctions";
+import { getSubfieldFrequence } from "@/helpers/visualizationFunctions";
+import React from "react";
+const chartData = [
+  { subfield: "January", desktop: 186, mobile: 80 },
+  { subfield: "February", desktop: 305, mobile: 200 },
+  { subfield: "March", desktop: 237, mobile: 120 },
+  { subfield: "April", desktop: 73, mobile: 190 },
+  { subfield: "May", desktop: 209, mobile: 130 },
+  { subfield: "June", desktop: 214, mobile: 140 },
+];
 
-export function UndergraduateUniversityFrequence() {
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+  label: {
+    color: "hsl(var(--background))",
+  },
+};
+
+export function SubfieldFrequence() {
   const { academics } = useUniversityContext();
 
   const colors = [
@@ -30,8 +66,8 @@ export function UndergraduateUniversityFrequence() {
     "#E91E63", // Pembe
   ];
 
-  const rawData = getUndergraduateUniversityFrequence(academics);
-  const topData = rawData.slice(0, 10).map((item, index) => ({
+  const rawData = getSubfieldFrequence(academics);
+  const topData = rawData.slice(0, 5).map((item, index) => ({
     ...item,
     color: colors[index % colors.length],
   }));
@@ -50,8 +86,8 @@ export function UndergraduateUniversityFrequence() {
     ...topData.reduce((acc, curr) => {
       return {
         ...acc,
-        [curr.university]: {
-          label: curr.university,
+        [curr.subfield]: {
+          label: curr.subfield,
           color: curr.color,
         },
       };
@@ -70,7 +106,7 @@ export function UndergraduateUniversityFrequence() {
               style={{ backgroundColor: data.color }}
             />
             <span className="text-xxs text-muted-foreground">
-              {data.university}
+              {data.subfield}
             </span>
             <span className="text-xxs">{data.count}</span>
           </div>
@@ -80,13 +116,12 @@ export function UndergraduateUniversityFrequence() {
 
     return null;
   };
-
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Mezun Olunan Üniversite</CardTitle>
+        <CardTitle>Bilim Alanı</CardTitle>
         <CardDescription>
-          Akademisyenlerin lisans mezunu olduğu en yaygın 10 üniversite
+          Akademisyenlerin üzerine çalıştığı en yaygın 5 bilim alanı
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -94,24 +129,41 @@ export function UndergraduateUniversityFrequence() {
           <BarChart
             accessibilityLayer
             data={topData}
-            layout="horizontal"
-            margin={{ left: 0 }}
+            layout="vertical"
+            margin={{
+              right: 22,
+            }}
           >
-            <YAxis type="number" hide />
-            <XAxis
-              hide
-              dataKey="university"
+            <YAxis
+              dataKey="subfield"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
               tickFormatter={(value) => defaultChartConfig[value]?.label}
+              hide
             />
-
+            <XAxis dataKey="count" type="number" hide />
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
-            <Bar dataKey="count" layout="vertical" radius={5}>
+            <Bar dataKey="count" layout="horizontal" radius={5}>
               {topData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
+                <>
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                  <LabelList
+                    dataKey={`subfield`}
+                    position="insideLeft"
+                    offset={2}
+                    className="fill-foreground"
+                    fontSize={11}
+                  />
+                  <LabelList
+                    dataKey="count"
+                    position="right"
+                    offset={2}
+                    className="fill-foreground"
+                    fontSize={11}
+                  />
+                </>
               ))}
             </Bar>
           </BarChart>

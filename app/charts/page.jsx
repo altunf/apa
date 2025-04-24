@@ -1,5 +1,6 @@
 import { UniqueDepartments } from "@/components/charts/unique-departments";
 import { UndergraduateUniversityFrequence } from "@/components/charts/undergraduate-university-frequence";
+import { SubfieldFrequence } from "@/components/charts/subfield-frequence";
 import React from "react";
 
 export default function Charts() {
@@ -8,6 +9,7 @@ export default function Charts() {
       <div className="flex flex-col md:flex-row gap-4">
         <UniqueDepartments />
         <UndergraduateUniversityFrequence />
+        <SubfieldFrequence/>
       </div>
       <p>
         Yakında, farklı grafikler eklenerek mevcut veriyle daha kapsamlı

@@ -34,7 +34,6 @@ export function UniqueDepartments() {
     "#E91E63", // Pembe
   ];
 
-
   const rawData = getUniqueDepartments(academics);
   const topData = rawData.slice(0, 5).map((item, index) => ({
     ...item,
@@ -63,13 +62,13 @@ export function UniqueDepartments() {
     }, {}),
   };
 
-
-  
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Lisans Bölümü - Sayı</CardTitle>
-          <CardDescription>{total} Akademisyen arasından {top} tanesini içerir</CardDescription>
+        <CardTitle>Mezun Olunan Lisans Bölümü</CardTitle>
+        <CardDescription>
+          Akademisyenlerin mezun olduğu en yaygın 5 lisans bölümü
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -127,7 +126,8 @@ export function UniqueDepartments() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Akademisyenlerin mezun olduğu en yaygın 5 lisans bölümü
+          Bu alanda verisi bulunan {total} Akademisyen arasından {top} tanesini
+          içerir
         </div>
       </CardFooter>
     </Card>
