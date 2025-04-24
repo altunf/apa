@@ -131,7 +131,7 @@ export function SubfieldFrequence() {
             data={topData}
             layout="vertical"
             margin={{
-              right: 22,
+              left: 32,
             }}
           >
             <YAxis
@@ -152,16 +152,16 @@ export function SubfieldFrequence() {
                   <LabelList
                     dataKey={`subfield`}
                     position="insideLeft"
-                    offset={2}
-                    className="fill-foreground"
-                    fontSize={11}
+                    offset={8}
+                    className="fill-white"
+                    fontSize={12}
                   />
                   <LabelList
                     dataKey="count"
-                    position="right"
-                    offset={2}
+                    position="left"
+                    offset={8}
                     className="fill-foreground"
-                    fontSize={11}
+                    fontSize={12}
                   />
                 </>
               ))}
